@@ -10,6 +10,8 @@
   <link rel="alternate" href="https://emceevictoriatan.com/index-zh.html" hreflang="zh-Hans">
   <link rel="alternate" href="https://emceevictoriatan.com/" hreflang="x-default">
   <link rel="icon" type="image/png" href="assets/logos/VT.png" />
+  <link rel="preload" as="image" href="/assets/hero.avif" fetchpriority="high">
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Victoria Tan | Professional Malaysia Emcee">
@@ -66,7 +68,7 @@
             beige: "rgb(233 225 216)" // your alternating section color
           },
         fontFamily: {
-        header: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'Inter', 'sans-serif'],
+        header: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
       }
         }
       }
@@ -110,9 +112,8 @@
   </script>
 
   <!-- Swiper (for sliders) -->
-   <link href="assets/styles/googlefont-inter.css" rel="stylesheet">
-
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css" />
+ 
+  
    <script src="assets/scripts/preline.min.js"></script>
   <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
   <style>
@@ -328,8 +329,9 @@
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-7">
             <!-- Replace image -->
-        <img src="assets/hero.avif"   alt="Victoria Tan hosting on stage"   loading="lazy" decoding="async" fetchpriority="low"
-     class="w-full object-cover object-center rounded-lg" />
+   <img src="/assets/hero.avif" alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur — trilingual host"
+     class="w-full object-cover object-center rounded-lg"
+     width="1600" height="900" decoding="async" fetchpriority="high">
           </div>
           <div class="lg:col-span-5 pb-2 group">
 <h1 class="text-5xl md:text-7xl font-bolder tracking-tight text-wordcolor leading-tight">
