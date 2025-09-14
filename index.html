@@ -9,7 +9,7 @@
   <link rel="alternate" href="https://emceevictoriatan.com/" hreflang="en">
   <link rel="alternate" href="https://emceevictoriatan.com/index-zh.html" hreflang="zh-Hans">
   <link rel="alternate" href="https://emceevictoriatan.com/" hreflang="x-default">
-  <link rel="icon" type="image/png" href="assets/logos/VT.png" />
+  <link rel="icon" type="image/webp" href="assets/logos/VT.webp" />
   <link rel="preload" as="image" href="/assets/hero.webp" fetchpriority="high">
 
 <!-- Open Graph / Facebook -->
@@ -17,13 +17,13 @@
 <meta property="og:title" content="Victoria Tan | Professional Malaysia Emcee">
 <meta property="og:description" content="Trusted Malaysia emcee with over a decade of experience in weddings, corporate events, and protocol ceremonies. Bilingual (English, Chinese, Malay).">
 <meta property="og:url" content="https://emceevictoriatan.com/">
-<meta property="og:image" content="https://emceevictoriatan.com/assets/hero.png">
+<meta property="og:image" content="https://emceevictoriatan.com/assets/hero.webp">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Victoria Tan | Malaysia Emcee & Event Host">
 <meta name="twitter:description" content="Victoria Tan — Professional Emcee in Malaysia for weddings, corporate events, protocol ceremonies & commercial shoots.">
-<meta name="twitter:image" content="https://emceevictoriatan.com/assets/hero.png">
+<meta name="twitter:image" content="https://emceevictoriatan.com/assets/hero.webp">
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -113,8 +113,7 @@
 
   <!-- Swiper (for sliders) -->
  
-  
-   <script src="assets/scripts/preline.min.js"></script>
+   
   <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
   <style>
  
@@ -244,7 +243,7 @@
 <div id="preloader" class="fixed inset-0 z-[9999] grid place-items-center bg-beige transition-opacity duration-500">
   <div class="flex flex-col items-center gap-5 px-6">
     <!-- your logo (use SVG/PNG); height can be tweaked -->
-    <img src="assets/logos/victoria-tan-logo.png" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90" />
+    <img src="assets/logos/victoria-tan-logo.webp" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90" />
 
     <!-- ring + progress bar -->
     <div class="relative">
@@ -270,8 +269,8 @@
       <!-- Logo -->
     <a href="#" class="flex-none rounded-md inline-block focus:outline-hidden focus:opacity-80" aria-label="Victoria Tan">
   <img
-    src="assets/logo/victoria-tan-logo3.png"
-    srcset="assets/logos/victoria-tan-logo3.png 1x, assets/logos/victoria-tan-logo3.png 2x"
+    src="assets/logo/victoria-tan-logo3.webp"
+    srcset="assets/logos/victoria-tan-logo3.webp 1x, assets/logos/victoria-tan-logo3.webp 2x"
     alt="Victoria Tan"
     class="h-16 w-auto object-contain"
   />
@@ -299,16 +298,27 @@
 
       <div class="md:hidden  pr-2">
         <!-- Toggle Button -->
-        <button type="button" class="hs-collapse-toggle flex justify-center items-center size-9.5 border border-gray-200 text-gray-500 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200" id="hs-navbar-header-floating-collapse" aria-expanded="false" aria-controls="hs-navbar-header-floating" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-header-floating">
-          <svg class="hs-collapse-open:hidden shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-          <svg class="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-        </button>
+     <button
+  type="button"
+  class="flex justify-center items-center size-9.5 border border-gray-200 text-gray-500 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200"
+  aria-expanded="false"
+  aria-controls="nav-drawer"
+  aria-label="Toggle navigation"
+  data-collapse="#nav-drawer"
+>
+  <!-- hamburger -->
+  <svg data-icon="open" class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+  <!-- close -->
+  <svg data-icon="close" class="hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+</button>
         <!-- End Toggle Button -->
       </div>
     </div>
 
-    <div id="hs-navbar-header-floating" class="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow md:block" aria-labelledby="hs-navbar-header-floating-collapse">
-      <div class="text-wordcolor font-medium flex flex-col md:flex-row md:items-center md:justify-end gap-2 md:gap-3 mt-3 md:mt-0 py-2 md:py-0 md:ps-7">
+ <div id="nav-drawer"
+     class="hidden md:block overflow-hidden transition-all duration-300 basis-full grow"
+>
+   <div class="text-wordcolor font-medium flex flex-col md:flex-row md:items-center md:justify-end gap-2 md:gap-3 mt-3 md:mt-0 py-2 md:py-0 md:ps-7">
         <a class="py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 border-transparent text-wordcolor-500 hover:text-gray-800 focus:outline-hidden" href="#about">ABOUT</a>
         <a class="py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 border-transparent text-wordcolor-500 hover:text-gray-800 focus:outline-hidden" href="#portfolio">PORTFOLIO</a>
           <a class="py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 border-transparent text-wordcolor-500 hover:text-gray-800 focus:outline-hidden " href="#services">SERVICES</a>
@@ -1400,6 +1410,68 @@ function initSwiperFor(key) {
     }, { once:true });
   });
   
+  (() => {
+  function setupCollapses() {
+    const btns = document.querySelectorAll('[data-collapse]');
+    btns.forEach(btn => {
+      const targetSel = btn.getAttribute('data-collapse');
+      const panel = document.querySelector(targetSel);
+      if (!panel) return;
+
+      // ensure ARIA state matches DOM
+      const sync = () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.querySelector('[data-icon="open"]')?.classList.toggle('hidden', expanded);
+        btn.querySelector('[data-icon="close"]')?.classList.toggle('hidden', !expanded);
+        panel.classList.toggle('hidden', !expanded);
+      };
+      sync();
+
+      const open = () => { btn.setAttribute('aria-expanded','true'); sync(); };
+      const close = () => { btn.setAttribute('aria-expanded','false'); sync(); };
+
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        expanded ? close() : open();
+      });
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && !btn.contains(e.target)) close();
+      });
+
+      // Close when any link inside is clicked (mobile)
+      panel.querySelectorAll('a[href]').forEach(a => {
+        a.addEventListener('click', () => close());
+      });
+
+      // Ensure desktop state (md:) wins when resizing
+      const mq = window.matchMedia('(min-width: 768px)');
+      mq.addEventListener('change', () => {
+        // On desktop, keep panel visible; on mobile, respect aria state
+        if (mq.matches) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-expanded','true');
+          sync();
+        } else {
+          btn.setAttribute('aria-expanded','false');
+          sync();
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCollapses);
+  } else {
+    setupCollapses();
+  }
+})();
+
   </script>
 </body>
 </html>
