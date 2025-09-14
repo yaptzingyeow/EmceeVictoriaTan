@@ -110,11 +110,11 @@
   </script>
 
   <!-- Swiper (for sliders) -->
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+   <link href="assets/styles/googlefont-inter.css" rel="stylesheet">
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css" />
-   <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+   <script src="assets/scripts/preline.min.js"></script>
+  <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
   <style>
  
 
@@ -212,6 +212,30 @@
 {
     position:  static!important;
 }
+
+.yt-lite{
+  position:relative; display:block; background:#000; cursor:pointer; border:0; padding:0;
+  background-position:center center; background-size:cover;
+}
+.yt-lite::before{
+  content:""; display:block; padding-top:56.25%; /* 16:9 */
+}
+.yt-lite > .play{
+  position:absolute; inset:auto 0 0 0; margin:auto; top:50%; transform:translateY(-50%);
+  width:68px; height:48px; border-radius:14px; background:rgba(0,0,0,.6);
+  display:grid; place-items:center;
+}
+.yt-lite > .play::before{
+  content:""; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;
+  margin-left:3px;
+}
+.yt-lite:hover > .play{ background:rgba(0,0,0,.75); }
+
+/* nice thumbnail fade-in */
+.yt-lite[style*="background-image"]{ filter:brightness(0.98); transition:filter .2s ease; }
+.yt-lite:hover{ filter:brightness(1); }
+
+
   </style>
 </head>
 <body class="bg-canvas text-ink antialiased">
@@ -304,7 +328,7 @@
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-7">
             <!-- Replace image -->
-        <img src="assets/hero.png?v=1" alt="Victoria on stage"
+        <img src="assets/hero.avif"   alt="Victoria Tan hosting on stage"   loading="lazy" decoding="async" fetchpriority="low"
      class="w-full object-cover object-center rounded-lg" />
           </div>
           <div class="lg:col-span-5 pb-2 group">
@@ -676,73 +700,75 @@
     </svg>
   </div>
 </section>
-<section id="video" class="bg-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 mt-14 py-10">
-    <div class="flex items-baseline justify-between">
-   <h2 class="text-3xl md:text-4xl font-extrabold text-wordcolor tracking-tight">Hosting Highlights</h2>
-      <!-- Optional CTA to YouTube channel -->
-       <a href="https://www.youtube.com/playlist?list=PLsmxZXoA5JpvxcCTYHyV49p1ZTWsps8wb" target="_blank"
-         class="text-sm underline underline-offset-4 hover:opacity-70">More on YouTube</a> 
+ <section id="video" class="bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
+    <!-- Header -->
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-wordcolor tracking-tight">
+        Hosting Highlights
+      </h2>
+      <a href="https://www.youtube.com/playlist?list=PLsmxZXoA5JpvxcCTYHyV49p1ZTWsps8wb"
+         target="_blank"
+         class="text-sm font-medium underline underline-offset-4 hover:opacity-80">
+        More on YouTube
+      </a>
     </div>
 
-    <!-- Main feature video -->
-    <div class="mt-6 grid lg:grid-cols-12 gap-8 items-start">
+    <!-- Grid -->
+    <div class="mt-8 grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <!-- Main feature -->
       <div class="lg:col-span-8">
-        <div class="aspect-video rounded-lg overflow-hidden border border-line bg-black">
-          <!-- Replace VIDEO_ID with your own -->
-<iframe class="w-full h-full"
-  src="https://www.youtube.com/embed/umMA7-xvtzo?modestbranding=1&rel=0&playsinline=1"
-  title="HOSTINGS HIGHLIGHTS | 主持精选"
-  loading="lazy"         
-  decoding="async"
-  fetchpriority="low"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen></iframe>
+        <div class="relative rounded-2xl overflow-hidden ring-1 ring-zinc-200/60 shadow-xl bg-black">
+          <div class="aspect-video">
+            <button class="yt-lite w-full h-full" data-ytid="umMA7-xvtzo"
+                    aria-label="Play video: Hosting Highlights"></button>
+          </div>
+          <!-- soft glow -->
+          <div class="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-tr from-white/10 to-transparent"></div>
         </div>
         <p class="mt-3 text-sm text-zinc-600">
-          A short cut of Victortia’s emcee performances across protocol, corporate, and wedding stages.
+          A short cut of Victoria’s emcee performances across protocol, corporate, and wedding stages.
         </p>
       </div>
 
-      <!-- Optional: two mini clips/trailers -->
-      <div class="lg:col-span-4 space-y-4">
-        <div class="aspect-video rounded-lg overflow-hidden border border-line bg-black">
-          <iframe class="w-full h-full"
-  src="https://www.youtube.com/embed/gMbRJ-MBLVc?modestbranding=1&rel=0&playsinline=1"
-  title="HOSTINGS HIGHLIGHTS | 主持精选"
-  loading="lazy"         
-  decoding="async"
-  fetchpriority="low"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen></iframe>
- 
+      <!-- Side videos -->
+      <div class="lg:col-span-4 grid gap-6">
+        <div class="group">
+          <div class="relative rounded-xl overflow-hidden ring-1 ring-zinc-200/60 shadow-md bg-black transition">
+            <div class="aspect-video">
+              <button class="yt-lite w-full h-full" data-ytid="gMbRJ-MBLVc"
+                      aria-label="Play video: Corporate Highlight"></button>
+            </div>
+            <div class="pointer-events-none absolute inset-0 rounded-xl group-hover:ring-2 group-hover:ring-wordcolor/40 transition"></div>
+          </div>
+          <p class="mt-2 text-xs text-zinc-600">Corporate highlight</p>
         </div>
-        <div class="aspect-video rounded-lg overflow-hidden border border-line bg-black">
-          <iframe class="w-full h-full"
-  src="https://www.youtube.com/embed/kdrErRUqXCU?modestbranding=1&rel=0&playsinline=1"
-  title="HOSTINGS HIGHLIGHTS | 主持精选"
-  loading="lazy"         
-  decoding="async"
-  fetchpriority="low"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen></iframe>
-  
- 
+
+        <div class="group">
+          <div class="relative rounded-xl overflow-hidden ring-1 ring-zinc-200/60 shadow-md bg-black transition">
+            <div class="aspect-video">
+              <button class="yt-lite w-full h-full" data-ytid="kdrErRUqXCU"
+                      aria-label="Play video: Wedding Highlight"></button>
+            </div>
+            <div class="pointer-events-none absolute inset-0 rounded-xl group-hover:ring-2 group-hover:ring-wordcolor/40 transition"></div>
+          </div>
+          <p class="mt-2 text-xs text-zinc-600">Wedding highlight</p>
         </div>
       </div>
     </div>
   </div>
-   <div class="custom-shape-divider-bottom-beige">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-        <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+
+  <!-- Curved divider -->
+  <div class="custom-shape-divider-bottom-beige">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
     </svg>
-</div>
+  </div>
 </section>
+
 <!-- Strengths & Profile -->
 
 
@@ -1007,7 +1033,7 @@
   </main>
 
   <!-- Swiper JS + init after injection -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/scripts/swiper-bundle.min.js"></script>
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1021,42 +1047,46 @@
   const weddingCount = 10;  // assets/wedding/wedding-1.avif ... wedding-10.avif
   const commercialCount = 10; // assets/commercial/commercial-1.avif ... commercial-10.avif
 
-    function slideHTMLContain(href, alt) {
-    return `
-      <div class="swiper-slide">
-        <div class="svc-frame w-full overflow-hidden rounded-lg bg-beige border border-line flex items-center justify-center">
-          <a href="${href}" target="_blank" rel="noopener" class="block">
-            <img src="${href}" alt="${alt}"
-                 class="max-h-full max-w-full object-contain transition-transform duration-500 ease-out hover:scale-[1.03] cursor-pointer">
-          </a>
-        </div>
-      </div>`;
-  }
- 
-// Helper to add slides (object-contain + frame + zoom)
+ const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
 function buildSlides(count, wrapperId, folder, prefix) {
   const gallery = document.getElementById(wrapperId);
   if (!gallery) return;
 
   for (let i = 1; i <= count; i++) {
     const href = `assets/${folder}/${prefix}-${i}.avif`;
-
     const slide = document.createElement('div');
     slide.className = "swiper-slide";
-
     slide.innerHTML = `
       <div class="w-full aspect-[4/3] bg-transparent flex items-center justify-center rounded-lg overflow-hidden group">
         <a href="${href}" target="_blank" rel="noopener">
-          <img src="${href}" alt="${prefix} ${i}"
-               class="max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer">
+          <img src="${BLANK}" data-src="${href}" alt="${prefix} ${i}"
+               loading="lazy" decoding="async" fetchpriority="low"
+               class="lazy-img max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer">
         </a>
       </div>
     `;
-
     gallery.appendChild(slide);
   }
+  enableLazy(`#${wrapperId} .lazy-img`);
 }
 
+function enableLazy(selector){
+  const imgs = document.querySelectorAll(selector);
+  const io = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(e=>{
+      if (!e.isIntersecting) return;
+      const img = e.target;
+      const src = img.getAttribute('data-src');
+      if (src) {
+        img.src = src;
+        img.removeAttribute('data-src');
+      }
+      obs.unobserve(img);
+    });
+  }, { rootMargin: "200px" });
+  imgs.forEach(img => io.observe(img));
+}
 
     // Inject slides for each service
 buildSlides(protocolCount,        'protocol-gallery',         'protocol',         'protocol');
@@ -1332,6 +1362,42 @@ function initSwiperFor(key) {
       // location.href = 'index-zh.html';
     }
   })();
+
+   let preconnected = false;
+  function warmConnections(){
+    if (preconnected) return; preconnected = true;
+    ["https://www.youtube.com","https://www.google.com","https://i.ytimg.com"].forEach(h=>{
+      const l = document.createElement('link'); l.rel="preconnect"; l.href=h; l.crossOrigin="anonymous"; document.head.appendChild(l);
+    });
+  }
+
+  // Setup lite players
+  document.querySelectorAll('.yt-lite').forEach(el=>{
+    const id = el.dataset.ytid;
+    // Use maxresdefault if available; fallback automatically handled by YouTube
+    el.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+    const play = document.createElement('span'); play.className = 'play'; el.appendChild(play);
+
+    // Preconnect when visible
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ warmConnections(); io.disconnect(); } });
+    }, {rootMargin: '200px'});
+    io.observe(el);
+
+    // Click → swap in iframe
+    el.addEventListener('click', ()=>{
+      const iframe = document.createElement('iframe');
+      iframe.width = 560; iframe.height = 315;
+      iframe.title = el.getAttribute('aria-label') || 'YouTube video player';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.loading = 'lazy';
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&modestbranding=1&rel=0&playsinline=1`;
+      el.replaceWith(iframe);
+    }, { once:true });
+  });
+  
   </script>
 </body>
 </html>
