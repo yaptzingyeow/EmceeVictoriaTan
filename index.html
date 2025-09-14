@@ -10,7 +10,7 @@
   <link rel="alternate" href="https://emceevictoriatan.com/index-zh.html" hreflang="zh-Hans">
   <link rel="alternate" href="https://emceevictoriatan.com/" hreflang="x-default">
   <link rel="icon" type="image/png" href="assets/logos/VT.png" />
-  <link rel="preload" as="image" href="/assets/hero.avif" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/hero.webp" fetchpriority="high">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
@@ -329,7 +329,7 @@
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-7">
             <!-- Replace image -->
-   <img src="/assets/hero.avif" alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur — trilingual host"
+   <img src="/assets/hero.webp" alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur — trilingual host"
      class="w-full object-cover object-center rounded-lg"
      width="1600" height="900" decoding="async" fetchpriority="high">
           </div>
@@ -554,7 +554,7 @@
     <div class="lg:col-span-7 order-1 lg:order-2">
       <!-- Replace image -->
      <img
-  src="assets/2ndbg.avif?v=1"
+  src="assets/2ndbg.webp?v=1"
   alt="Backstage / second main"
   class="w-full object-cover rounded-xl"
   loading="lazy"
@@ -1046,8 +1046,8 @@
   const protocolCount = 12;
   const corporateBeautyCount = 15;   // <- change as needed
   const corporateTechCount = 14;     // <- change as needed
-  const weddingCount = 10;  // assets/wedding/wedding-1.avif ... wedding-10.avif
-  const commercialCount = 10; // assets/commercial/commercial-1.avif ... commercial-10.avif
+  const weddingCount = 10;  // assets/wedding/wedding-1.webp ... wedding-10.webp
+  const commercialCount = 10; // assets/commercial/commercial-1.webp ... commercial-10.webp
 
  const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
@@ -1056,7 +1056,7 @@ function buildSlides(count, wrapperId, folder, prefix) {
   if (!gallery) return;
 
   for (let i = 1; i <= count; i++) {
-    const href = `assets/${folder}/${prefix}-${i}.avif`;
+    const href = `assets/${folder}/${prefix}-${i}.webp`;
     const slide = document.createElement('div');
     slide.className = "swiper-slide";
     slide.innerHTML = `
@@ -1238,7 +1238,7 @@ function fillAlbumUI(key) {
   if (!mobileWrap.dataset.filled) {
     let slides = '';
     for (let i = 1; i <= cfg.count; i++) {
-      const href = `${cfg.base}${i}.avif`;
+      const href = `${cfg.base}${i}.webp`;
       const title = (cfg.titles && cfg.titles[i - 1]) ? cfg.titles[i - 1] : `${cfg.label} ${i}`;
       slides += makeMobileSlide(href, title, title);
     }
@@ -1250,7 +1250,7 @@ function fillAlbumUI(key) {
   if (!grid.dataset.filled) {
     let cards = '';
     for (let i = 1; i <= cfg.count; i++) {
-      const href = `${cfg.base}${i}.avif`;
+      const href = `${cfg.base}${i}.webp`;
       const title = (cfg.titles && cfg.titles[i - 1]) ? cfg.titles[i - 1] : `${cfg.label} ${i}`;
       cards += makeDesktopCard(href, title);
     }
