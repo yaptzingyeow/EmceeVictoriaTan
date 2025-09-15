@@ -117,27 +117,49 @@
   <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
   <style>
  
-
- @keyframes marquee {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+ /* 1) Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-spin-slow,
+  .animate-loader { animation: none !important; }
 }
+
+/* 2) Marquee — smoother + tunable speed */
+:root { --marquee-duration: 60s; }          /* ← change this to 40s/90s, etc. */
+
+@keyframes marquee {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-50%,0,0); } /* needs two identical logo sets */
+}
+
+.marquee-viewport { overflow: hidden; }      /* apply to the outer full-bleed div */
 .animate-marquee {
   display: flex;
+  gap: 3rem;                                 /* matches gap-12 */
   width: max-content;
-  animation: marquee 25s linear infinite;
+  animation: marquee var(--marquee-duration) linear infinite;
+  will-change: transform;                    /* GPU-friendly */
+  contain: content;                          /* isolates layout/paint */
+}
+.animate-marquee:hover { animation-play-state: paused; } /* optional pause */
+
+/* 3) Spin — actually slow it down (1.6s is fast) */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;   /* try 4–8s */
+  will-change: transform;
 }
 
-
- @keyframes spin-slow { to { transform: rotate(360deg); } }
-  .animate-spin-slow { animation: spin-slow 1.6s linear infinite; }
-
-  @keyframes loader {
-    0%   { transform: translateX(-100%); }
-    50%  { transform: translateX(20%); }
-    100% { transform: translateX(100%); }
-  }
-  .animate-loader { animation: loader 1.4s ease-in-out infinite; }
+/* 4) Loader — use translate3d + ensure viewport hides overflow */
+@keyframes loader {
+  0%   { transform: translate3d(-100%,0,0); }
+  50%  { transform: translate3d(20%,0,0); }
+  100% { transform: translate3d(100%,0,0); }
+}
+.animate-loader {
+  animation: loader 1.4s ease-in-out infinite;
+  will-change: transform;
+}
 
   /* fade away */
   #preloader.is-hidden { opacity: 0; pointer-events: none; }
@@ -596,28 +618,76 @@
   </div>
 </section>
 
-        <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-14 bg-white">
-  <div class="py-6 overflow-hidden">
-    <p class="text-center text-sm text-wordcolor-500 mb-4  font-bolder ">Clients & Partners</p>
-
-    <div class="relative w-full overflow-hidden">
-      <!-- marquee track -->
-      <div class="flex animate-marquee gap-12">
+    <section class="bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-10">
+     <h2 class="text-3xl md:text-4xl font-extrabold text-wordcolor tracking-tight">Clients & Partners</h2>
+    <p class="text-center text-sm text-wordcolor/80 mb-4 font-semibold">Clients & Partners</p>
+  </div>
+<div class="marquee-viewport relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden py-6">
+  <div class="animate-marquee">
+   
         <!-- Row of logos -->
-        <img src="assets/logos/astro.svg" alt="Brand 1" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 2" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 3" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 4" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 5" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 6" class="h-10 grayscale opacity-80" />
-
+        <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
         <!-- duplicate logos for seamless loop -->
-        <img src="assets/logos/astro.svg" alt="Brand 1" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 2" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg"alt="Brand 3" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 4" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 5" class="h-10 grayscale opacity-80" />
-        <img src="assets/logos/astro.svg" alt="Brand 6" class="h-10 grayscale opacity-80" />
+       <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
       </div>
     </div>
   </div>
@@ -628,6 +698,7 @@
         <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
     </svg>
 </div>
+            </div>
 </section>
 
 <!-- 4) Video — white -->
