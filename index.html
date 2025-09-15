@@ -1053,13 +1053,13 @@
     // ---------- Your pattern applied to ALL services ----------
     // Adjust counts to match the number of images you have in each folder.
      
-  const protocolCount = 12;
-  const corporateBeautyCount = 15;   // <- change as needed
+  const protocolCount = 11;
+  const corporateBeautyCount = 14;   // <- change as needed
   const corporateTechCount = 14;     // <- change as needed
   const weddingCount = 10;  // assets/wedding/wedding-1.webp ... wedding-10.webp
   const commercialCount = 10; // assets/commercial/commercial-1.webp ... commercial-10.webp
 
- const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
 function buildSlides(count, wrapperId, folder, prefix) {
   const gallery = document.getElementById(wrapperId);
@@ -1072,34 +1072,73 @@ function buildSlides(count, wrapperId, folder, prefix) {
     slide.innerHTML = `
       <div class="w-full aspect-[4/3] bg-transparent flex items-center justify-center rounded-lg overflow-hidden group">
         <a href="${href}" target="_blank" rel="noopener">
-          <img src="${BLANK}" data-src="${href}" alt="${prefix} ${i}"
-               loading="lazy" decoding="async" fetchpriority="low"
-               class="lazy-img max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer">
+          <img
+            src="${BLANK}"
+            data-src="${href}"
+            alt="${prefix} ${i}"
+            ${i <= 2 ? 'loading="eager"' : 'loading="lazy"'}
+            decoding="async"
+            ${i <= 2 ? 'fetchpriority="high"' : 'fetchpriority="auto"'}
+            class="lazy-img max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer"
+          >
         </a>
       </div>
     `;
     gallery.appendChild(slide);
   }
-  enableLazy(`#${wrapperId} .lazy-img`);
+  enableLazy(`#${wrapperId} .lazy-img`, { rootMargin: '600px 0px', prefetchNext: true });
 }
 
-function enableLazy(selector){
-  const imgs = document.querySelectorAll(selector);
-  const io = new IntersectionObserver((entries, obs)=>{
-    entries.forEach(e=>{
+function enableLazy(selector, { rootMargin = '400px 0px', prefetchNext = true } = {}) {
+  const imgs = [...document.querySelectorAll(selector)];
+  if (!imgs.length) return;
+
+  // Kick off immediate load for any eager imgs
+  imgs.filter(img => img.getAttribute('loading') === 'eager').forEach(loadImg);
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
       if (!e.isIntersecting) return;
       const img = e.target;
-      const src = img.getAttribute('data-src');
-      if (src) {
-        img.src = src;
-        img.removeAttribute('data-src');
-      }
-      obs.unobserve(img);
-    });
-  }, { rootMargin: "200px" });
-  imgs.forEach(img => io.observe(img));
-}
+      loadImg(img);
 
+      // Prefetch the next sibling image to make swiping feel instant
+      if (prefetchNext) {
+        const next = nextLazy(imgs, img);
+        if (next) warm(next.dataset.src);
+      }
+      io.unobserve(img);
+    });
+  }, { rootMargin, threshold: 0.01 });
+
+  imgs.filter(img => img.getAttribute('loading') !== 'eager').forEach(img => io.observe(img));
+
+  function loadImg(img) {
+    if (!img || !img.dataset) return;
+    const src = img.dataset.src;
+    if (src && img.src !== src) {
+      img.src = src;
+      img.removeAttribute('data-src');
+    }
+  }
+
+  function nextLazy(list, node) {
+    const idx = list.indexOf(node);
+    for (let i = idx + 1; i < list.length; i++) {
+      if (list[i] && list[i].dataset && list[i].dataset.src) return list[i];
+    }
+    return null;
+  }
+
+  // Warm the browser cache without attaching to DOM
+  function warm(url) {
+    if (!url) return;
+    const img = new Image();
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.src = url;
+  }
+}
     // Inject slides for each service
 buildSlides(protocolCount,        'protocol-gallery',         'protocol',         'protocol');
   buildSlides(corporateBeautyCount, 'corporate-beauty-gallery', 'corporate-beauty', 'corporate-beauty');
@@ -1399,7 +1438,7 @@ function initSwiperFor(key) {
     // Click → swap in iframe
     el.addEventListener('click', ()=>{
       const iframe = document.createElement('iframe');
-      iframe.width = 560; iframe.height = 315;
+       iframe.className = 'w-full h-full';      
       iframe.title = el.getAttribute('aria-label') || 'YouTube video player';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.allowFullscreen = true;
