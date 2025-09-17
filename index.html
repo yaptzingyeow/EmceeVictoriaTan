@@ -11,7 +11,12 @@
   <link rel="alternate" href="https://emceevictoriatan.com/" hreflang="x-default">
   <link rel="icon" type="image/webp" href="assets/logos/VT.webp" />
   <link rel="preload" as="image" href="/assets/hero1.webp" fetchpriority="high">
-
+<link rel="preload" as="image" href="/assets/logos/1.svg">
+<link rel="preload" as="image" href="/assets/logos/2.svg">
+<link rel="preload" as="image" href="/assets/logos/3.svg">
+<link rel="preload" as="image" href="/assets/logos/4.svg">
+<link rel="preload" as="image" href="/assets/logos/5.svg">
+<link rel="preload" as="image" href="/assets/logos/6.svg">
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Victoria Tan | Professional Malaysia Emcee">
@@ -150,18 +155,24 @@
 
 /* Mobile/Tablet: disable animation, enable swipe with snap */
 @media (max-width: 1024px) {
-  .marquee-viewport {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+  .marquee-viewport{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
   }
-  .marquee-viewport::-webkit-scrollbar { display: none; }
+  .marquee-viewport::-webkit-scrollbar{ display:none; }
 
-  .marquee-viewport .animate-marquee { animation: none !important; }
-  .logo { scroll-snap-align: start; }
+  /* DO NOT disable animation here anymore */
+  /* .marquee-viewport .animate-marquee { animation: none !important; } */
+
+  .logo{ scroll-snap-align:start; }
 }
 
+/* pause class used by the script */
+.pause-marquee .animate-marquee { animation-play-state: paused; }
+
+/* good UX for dragging, and kill native image-drag */
+.marquee-viewport { cursor: grab; }
 /* Optional: show grab cursor when you implement pointer-drag JS */
 .marquee-viewport.grabbing { cursor: grabbing; }
 .marquee-viewport img {
@@ -648,77 +659,83 @@
   <div class="animate-marquee flex gap-12 items-center px-6">
    
         <!-- Row of logos -->
-        <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-         <img src="assets/logos/31.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/32.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/33.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/34.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <!-- duplicate logos for seamless loop -->
-       <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-            <img src="assets/logos/31.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/32.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/33.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
-        <img src="assets/logos/34.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
+        <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  fetchpriority="high"  draggable="false" />
+        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high"  draggable="false" />
+        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high" draggable="false" />
+        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high"  draggable="false" />
+        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high" draggable="false" />
+        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  fetchpriority="high"  draggable="false" />
+        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+         <img src="assets/logos/31.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/32.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/33.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/34.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+    
 
       </div>
+
+      <template id="logos-dup">
+            <!-- duplicate logos for seamless loop -->
+       <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/10.svg" alt="Brand 10" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/11.svg" alt="Brand 11" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/12.svg" alt="Brand 12" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+          <img src="assets/logos/13.svg" alt="Brand 13" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/14.svg" alt="Brand 14" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/15.svg" alt="Brand 15" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/16.svg" alt="Brand 16" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/17.svg" alt="Brand 17" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/18.svg" alt="Brand 18" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/19.svg" alt="Brand 19" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/20.svg" alt="Brand 20" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/21.svg"alt="Brand 21" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/22.svg" alt="Brand 22" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/23.svg" alt="Brand 23" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/24.svg" alt="Brand 24" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/25.svg" alt="Brand 25" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/26.svg" alt="Brand 26" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/27.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/28.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/29.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/30.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+            <img src="assets/logos/31.svg"alt="Brand 27" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/32.svg" alt="Brand 28" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/33.svg" alt="Brand 29" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/34.svg" alt="Brand 30" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
+  <!-- same 1..34 <img> again -->
+</template>
+
     </div>
   </div>
    <div class="custom-shape-divider-bottom-beige">
@@ -1619,49 +1636,98 @@ function initSwiperFor(key) {
 
 <script defer>
 (() => {
-  const vp = document.querySelector('.marquee-viewport');
-  if (!vp) return;
+  const vp    = document.querySelector('.marquee-viewport');
+  const track = document.getElementById('logo-track') || vp?.querySelector('.animate-marquee');
+  const tpl   = document.getElementById('logos-dup');
+  if (!vp || !track) return;
 
-  let isDown = false, startX = 0, startScroll = 0, pid = null;
+  /* ---------- 0) Helpers: pause/resume animation via CSS class ---------- */
+  let resumeTimer;
+  const pause  = () => { vp.classList.add('pause-marquee'); clearTimeout(resumeTimer); };
+  const resume = () => { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => vp.classList.remove('pause-marquee'), 150); };
+
+  /* ---------- 1) Early-start lazy images inside the viewport ---------- */
+  const observeLazy = (root = vp) => {
+    const lazyImgs = root.querySelectorAll('img[loading="lazy"]');
+    if (!lazyImgs.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const img = e.target;
+          // For SVGs, nudging loading to eager is enough to start fetching
+          img.loading = 'eager';
+          obs.unobserve(img);
+        }
+      }, { root: vp, rootMargin: '600px 0px' });
+
+      lazyImgs.forEach(img => io.observe(img));
+    } else {
+      lazyImgs.forEach(img => img.loading = 'eager');
+    }
+  };
+  observeLazy(vp);
+
+  /* ---------- 2) Mount duplicate set on desktop after load ---------- */
+  const mq = window.matchMedia('(min-width:1025px)');
+  const mountDup = () => {
+    if (!tpl || !mq.matches || track.dataset.dupMounted) return;
+    track.appendChild(tpl.content.cloneNode(true));
+    track.dataset.dupMounted = '1';
+    // observe the newly added lazy images too
+    observeLazy(track);
+  };
+  const onLoaded = () => setTimeout(mountDup, 200);
+  if (document.readyState === 'complete') onLoaded();
+  else window.addEventListener('load', onLoaded);
+  mq.addEventListener ? mq.addEventListener('change', mountDup) : mq.addListener(mountDup);
+
+  /* ---------- 3) Drag-to-scroll (desktop + touch-pointer) ---------- */
+  // prevent native “image drag ghost”
+  vp.addEventListener('dragstart', e => e.preventDefault());
+  // disable image dragging at the element level if needed
+  vp.querySelectorAll('img').forEach(img => img.setAttribute('draggable','false'));
+
+  let isDown = false, startX = 0, startScroll = 0, pid = null, moved = false;
 
   const down = (e) => {
-    isDown = true;
+    isDown = true; moved = false;
+    pause(); // pause animation while interacting
     pid = e.pointerId; vp.setPointerCapture?.(pid);
     vp.classList.add('grabbing');
     startX = e.clientX;
     startScroll = vp.scrollLeft;
+    e.preventDefault(); // stop native image drag / text selection
   };
   const move = (e) => {
     if (!isDown) return;
     const dx = e.clientX - startX;
+    if (Math.abs(dx) > 3) moved = true;
     vp.scrollLeft = startScroll - dx;
+    e.preventDefault();
   };
   const up = () => {
     isDown = false;
-    if (pid!=null) { try { vp.releasePointerCapture(pid); } catch {}
-      pid = null;
-    }
+    if (pid != null) { try { vp.releasePointerCapture(pid); } catch {} pid = null; }
     vp.classList.remove('grabbing');
+    resume(); // resume animation shortly after interaction
   };
 
-  vp.addEventListener('pointerdown', down, {passive:true});
-  vp.addEventListener('pointermove',  move, {passive:true});
-  vp.addEventListener('pointerup',    up,   {passive:true});
+  vp.addEventListener('pointerdown', down, { passive: false });
+  vp.addEventListener('pointermove',  move, { passive: false });
+  vp.addEventListener('pointerup',    up);
   vp.addEventListener('pointercancel',up);
 
-  // Pause the marquee while user interacts (desktop)
-  vp.addEventListener('pointerdown', () => {
-    const track = vp.querySelector('.animate-marquee');
-    if (track) track.style.animationPlayState = 'paused';
-  });
-  vp.addEventListener('pointerup', () => {
-    const track = vp.querySelector('.animate-marquee');
-    if (track && window.matchMedia('(min-width: 1025px)').matches) {
-      track.style.animationPlayState = 'running';
-    }
-  });
+  // pause on wheel/scroll, resume after
+  vp.addEventListener('wheel',  pause,  { passive: true });
+  vp.addEventListener('scroll', resume, { passive: true });
+
+  // if logos are links, prevent accidental click after a drag
+  vp.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
 })();
 </script>
+
 
 
 </body>
