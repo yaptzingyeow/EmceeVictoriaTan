@@ -118,42 +118,67 @@
   <style>
  
  /* 1) Respect users who prefer reduced motion */
+ /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-spin-slow,
   .animate-loader { animation: none !important; }
 }
 
-/* 2) Marquee — smoother + tunable speed */
-:root { --marquee-duration: 60s; }          /* ← change this to 40s/90s, etc. */
+/* ===== Marquee (desktop animation, mobile swipe) ===== */
+:root { --marquee-duration: 60s; } /* tweak: 40s/60s/90s */
 
 @keyframes marquee {
   from { transform: translate3d(0,0,0); }
-  to   { transform: translate3d(-50%,0,0); } /* needs two identical logo sets */
+  to   { transform: translate3d(-50%,0,0); } /* needs duplicated logo set */
 }
 
-.marquee-viewport { overflow: hidden; }      /* apply to the outer full-bleed div */
+.marquee-viewport { overflow: hidden; }
 .animate-marquee {
   display: flex;
-  gap: 3rem;                                 /* matches gap-12 */
+  gap: 3rem;                 /* = gap-12 */
   width: max-content;
+  will-change: transform;
+  contain: content;
   animation: marquee var(--marquee-duration) linear infinite;
-  will-change: transform;                    /* GPU-friendly */
-  contain: content;                          /* isolates layout/paint */
 }
-.animate-marquee:hover { animation-play-state: paused; } /* optional pause */
 
-/* 3) Spin — actually slow it down (1.6s is fast) */
+/* Pause on hover on pointer devices only */
+@media (hover:hover) {
+  .animate-marquee:hover { animation-play-state: paused; }
+}
+
+/* Mobile/Tablet: disable animation, enable swipe with snap */
+@media (max-width: 1024px) {
+  .marquee-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .marquee-viewport::-webkit-scrollbar { display: none; }
+
+  .marquee-viewport .animate-marquee { animation: none !important; }
+  .logo { scroll-snap-align: start; }
+}
+
+/* Optional: show grab cursor when you implement pointer-drag JS */
+.marquee-viewport.grabbing { cursor: grabbing; }
+.marquee-viewport img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+/* ===== Spin (slower & smooth) ===== */
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;   /* try 4–8s */
   will-change: transform;
 }
 
-/* 4) Loader — use translate3d + ensure viewport hides overflow */
+/* ===== Loader (GPU-friendly) ===== */
 @keyframes loader {
   0%   { transform: translate3d(-100%,0,0); }
-  50%  { transform: translate3d(20%,0,0); }
+  50%  { transform: translate3d(  20%,0,0); }
   100% { transform: translate3d(100%,0,0); }
 }
 .animate-loader {
@@ -161,13 +186,9 @@
   will-change: transform;
 }
 
-  /* fade away */
-  #preloader.is-hidden { opacity: 0; pointer-events: none; }
-
-  /* reduce motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-spin-slow, .animate-loader { animation: none; }
-  }
+/* ===== Preloader fade ===== */
+#preloader { transition: opacity .35s ease; }
+#preloader.is-hidden { opacity: 0; pointer-events: none; }
 
     /* Masonry layout (no extra library needed) */
 .masonry { column-gap: 1rem; }                 /* gap between columns */
@@ -624,7 +645,7 @@
    
   </div>
 <div class="marquee-viewport relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden py-6">
-  <div class="animate-marquee">
+  <div class="animate-marquee flex gap-12 items-center px-6">
    
         <!-- Row of logos -->
         <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async" />
@@ -1594,5 +1615,54 @@ function initSwiperFor(key) {
 })();
 
   </script>
+
+
+<script defer>
+(() => {
+  const vp = document.querySelector('.marquee-viewport');
+  if (!vp) return;
+
+  let isDown = false, startX = 0, startScroll = 0, pid = null;
+
+  const down = (e) => {
+    isDown = true;
+    pid = e.pointerId; vp.setPointerCapture?.(pid);
+    vp.classList.add('grabbing');
+    startX = e.clientX;
+    startScroll = vp.scrollLeft;
+  };
+  const move = (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    vp.scrollLeft = startScroll - dx;
+  };
+  const up = () => {
+    isDown = false;
+    if (pid!=null) { try { vp.releasePointerCapture(pid); } catch {}
+      pid = null;
+    }
+    vp.classList.remove('grabbing');
+  };
+
+  vp.addEventListener('pointerdown', down, {passive:true});
+  vp.addEventListener('pointermove',  move, {passive:true});
+  vp.addEventListener('pointerup',    up,   {passive:true});
+  vp.addEventListener('pointercancel',up);
+
+  // Pause the marquee while user interacts (desktop)
+  vp.addEventListener('pointerdown', () => {
+    const track = vp.querySelector('.animate-marquee');
+    if (track) track.style.animationPlayState = 'paused';
+  });
+  vp.addEventListener('pointerup', () => {
+    const track = vp.querySelector('.animate-marquee');
+    if (track && window.matchMedia('(min-width: 1025px)').matches) {
+      track.style.animationPlayState = 'running';
+    }
+  });
+})();
+</script>
+
+
 </body>
 </html>
