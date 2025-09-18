@@ -765,15 +765,15 @@
     <div class="flex items-center gap-2 border-b border-line mb-6">
       <button type="button" data-tab="events"
               class="tab-btn px-4 py-2 rounded-t-md text-sm font-medium text-wordcolor border border-line border-b-transparent bg-white">
-        Events
+        Corporate & Brand Events
       </button>
       <button type="button" data-tab="tv"
               class="tab-btn px-4 py-2 rounded-t-md text-sm font-medium text-zinc-600 hover:text-wordcolor">
-        TV Hosts & Ads
+        TV & Media
       </button>
-      <button type="button" data-tab="ads"
+      <button type="button" data-tab="lifestyle"
               class="tab-btn px-4 py-2 rounded-t-md text-sm font-medium text-zinc-600 hover:text-wordcolor">
-        Ads
+        Festivals & Lifestyles
       </button>
       <div class="flex-1"></div>
     </div>
@@ -812,17 +812,17 @@
       </div>
 
       <!-- Panel: Ads -->
-      <div class="tab-panel hidden" id="panel-ads">
+      <div class="tab-panel hidden" id="panel-lifestyle">
         <!-- Mobile Swiper -->
         <div class="block md:hidden">
-          <div class="swiper" id="swiper-ads">
-            <div class="swiper-wrapper" id="swiper-wrapper-ads"></div>
+          <div class="swiper" id="swiper-lifestyle">
+            <div class="swiper-wrapper" id="swiper-wrapper-lifestyle"></div>
             <div class="swiper-pagination"></div>
           </div>
         </div>
         <!-- Desktop Grid -->
         <div class="hidden md:block">
-          <div class="grid sm:grid-cols-12 gap-6" id="grid-ads"></div>
+          <div class="grid sm:grid-cols-12 gap-6" id="grid-lifestyle"></div>
         </div>
       </div>
 
@@ -1321,42 +1321,68 @@ buildSlides(protocolCount,        'protocol-gallery',         'protocol',       
 // Put this where you defined portfolioConfig
 const portfolioConfig = {
   events: {
-    count: 38,
+    count: 27,
     base: 'assets/portfolio/events/event-',
-    label: 'EVENT',
+    label: 'Corporate & Brand Events',
     titles: [
-    "Event 1","Event 2"
+    "Jo Loves Grand Opening—Jo Malone CBE’s 1st fragrance boutique in Malaysia",
+    "Ralph Lauren Polo Red Parfum Launch @ Pavilion KL <br>(Special Appearance: Thai Celeb, Joong Archen)",
+    "Golden Eagle Awards 金鹰奖",
+    "Launch Ceremony of the Premium Cold Chain <br> Shipping Route:Kuantan Port - Beibu Gulf Port. <br> 中马关丹港一北部湾港冷链精品航线首航仪式",
+"Outstanding Elite Award Night by China Press<br>中国报粉红社杰出商才奖",
+"Versace Dylan Purple Launch @ KLCC <br>(Special Appearance: Thai Celeb, Hirunkit & Jo Vynn)",
+"Sephora X Jo Loves <br>Jo Malone CBE Exclusive Meet & Greet",
+"Unilever Food Solutions <br>Chef Showcase",
+"Unilever Food Solutions <br>Chef Showcase",
+"Parfum De Marly’s Valaya Exclusif Launch @ Pavilllion KL",
+"Miss Charm Transformation Grand Final",
+"Kayali Fleur Majesty Rose Royal | 31 Launch & PR Event",
+"Brightray MY-01 Data Centre &#x1F1E8;&#x1F1F3; &#x1F1F2;&#x1F1FE; Official Debut & Gala Dinner",
+"“两国 双园”马中关丹产业园十周年庆祝活动 兼彭享州与广西壮族自治区欢迎晚宴",
+"Electrolux Middle East & Africa Dealers Convention @ Pattaya Thailand",
+"Malaysia Health & Wellness Brand Awards",
+"Universal Robots’ Conferences",
+"Grand Launch of Vono’s Latest Innovation & Dealer Awards Night",
+"Automotive Mobility Solutions Conference- Automechanika Messe Frankfurt",
+"Corporate Events",
+"POLA’s PR & media event -Japanese Luxury Skincare Brand",
+"MotoGP World Championship",
+"Grand Opening of Renewed Medic Clinic",
+"HID Global Launch & Golf Event ",
+"Taiwan Expo @ KLCC",
+"China-Malaysia Gov Cooperation Forum",
+"Jennyhouse Launch – First Korean Salon Haircare Brand"
+
     ]
   },
   tv: {
-    count: 10,
+    count: 7,
     base: 'assets/portfolio/tv/tv-',
-    label: 'TV HOST & ADS',
+    label: 'TV & Media',
     titles: [
-      "Cuckoo Starfluncer Award",
-      "Cuckoo Starfluncer Award",
-      "Wowshop",
-      "Wowshop - Pink Festival",
-      "Wowshop - Pink Festival",
-      "Wowshop",
-      "TV Host",
-      "Wowshop",
-      "Wowshop",
-      "Watson",
-      "8TV News Host",
-      "Wowshop",
-      "Wowshop"
+      "8TV Starfluencer Awards <br>八度空间 Cuckoo最霸娱乐盛典",
+      "8TV TV Host",
+      "8TV TV Wowshop",
+      "TV Programs &  Commercials (TVC)",
+      "TV Programs &  Commercials (TVC)",
+      "Watsons",
+      "8TV Host",
     ]
   },
-  ads: {
-    count: 4,
-    base: 'assets/portfolio/ads/ads-',
-    label: 'Goverment',
+ lifestyle: {
+    count: 9,
+    base: 'assets/portfolio/lifestyle/lifestyle-',
+    label: 'Festivals,Weddings & Lifestyle',
     titles: [
-      "Derm10",
-      "Watsons",
-      "Ads",
-      "Shopee & Lazada(livestream)" 
+         "Cittabella Magazine <br>Better Together Events",
+              "Shu Uemura PR Media Event" ,
+              "Giorgio Armani Make up Workshop",
+               "Amazing Thailand- Hello Thailand Event by Royal Embassy of Thailand & Tourism Authority of Thailand Malaysia",
+      "EcoWorld CNY events",
+      "International & Malaysian Weddings",
+      "International & Malaysian Weddings",
+    "International & Malaysian Weddings",
+       "International & Malaysian Weddings",
     ]
   }
 };
@@ -1431,6 +1457,23 @@ function fillAlbumUI(key) {
   // ====== SWIPER INIT (per tab, mobile only) ======
   const swipers = {}; // cache
 
+  function ensureSwiper(key) {
+  const el = document.querySelector(`#swiper-${key}`); // your swiper container
+  if (!el) return;
+
+  if (!swipers[key]) {
+    swipers[key] = new Swiper(el, {
+      slidesPerView: 1.1,      // your settings
+      spaceBetween: 12,
+      loop: false,              // avoid clones causing confusion
+      centeredSlides: false,
+      preloadImages: false,
+      lazy: false,
+      updateOnWindowResize: false // we’ll call update() ourselves
+    });
+  }
+}
+
 function initSwiperFor(key) {
   // Only run on mobile
   if (window.innerWidth >= 768) return;
@@ -1468,7 +1511,7 @@ function initSwiperFor(key) {
   const panels = {
     events: document.getElementById('panel-events'),
     tv: document.getElementById('panel-tv'),
-    ads: document.getElementById('panel-ads'),
+    lifestyle: document.getElementById('panel-lifestyle'),
   };
 
   function activateTab(key) {
@@ -1491,7 +1534,15 @@ function initSwiperFor(key) {
     // render content for this tab if needed
     fillAlbumUI(key);
     // init swiper if mobile
-    initSwiperFor(key);
+     ensureSwiper(key);
+
+  // now that it's visible, fix measurements & start at first slide
+  requestAnimationFrame(() => {
+    const s = swipers[key];
+    if (!s) return;
+    s.update();
+    s.slideTo(0, 0, false);  // index 0, no animation
+  });
   }
 
   tabButtons.forEach(btn => {
