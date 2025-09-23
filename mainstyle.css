@@ -1,0 +1,168 @@
+
+ /* 1) Respect users who prefer reduced motion */
+ /* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-spin-slow,
+  .animate-loader { animation: none !important; }
+}
+
+/* ===== Marquee (desktop animation, mobile swipe) ===== */
+:root { --marquee-duration: 60s; } /* tweak: 40s/60s/90s */
+
+@keyframes marquee {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-50%,0,0); } /* needs duplicated logo set */
+}
+
+.marquee-viewport { overflow: hidden; }
+.animate-marquee {
+  display: flex;
+  gap: 3rem;                 /* = gap-12 */
+  width: max-content;
+  will-change: transform;
+  contain: content;
+  animation: marquee var(--marquee-duration) linear infinite;
+}
+
+/* Pause on hover on pointer devices only */
+@media (hover:hover) {
+  .animate-marquee:hover { animation-play-state: paused; }
+}
+
+/* Mobile/Tablet: disable animation, enable swipe with snap */
+@media (max-width: 1024px) {
+  .marquee-viewport{
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .marquee-viewport::-webkit-scrollbar{ display:none; }
+
+  /* DO NOT disable animation here anymore */
+  /* .marquee-viewport .animate-marquee { animation: none !important; } */
+
+  .logo{ scroll-snap-align:start; }
+}
+
+/* pause class used by the script */
+.pause-marquee .animate-marquee { animation-play-state: paused; }
+
+/* good UX for dragging, and kill native image-drag */
+.marquee-viewport { cursor: grab; }
+/* Optional: show grab cursor when you implement pointer-drag JS */
+.marquee-viewport.grabbing { cursor: grabbing; }
+.marquee-viewport img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+/* ===== Spin (slower & smooth) ===== */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;   /* try 4–8s */
+  will-change: transform;
+}
+
+/* ===== Loader (GPU-friendly) ===== */
+@keyframes loader {
+  0%   { transform: translate3d(-100%,0,0); }
+  50%  { transform: translate3d(  20%,0,0); }
+  100% { transform: translate3d(100%,0,0); }
+}
+.animate-loader {
+  animation: loader 1.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ===== Preloader fade ===== */
+#preloader { transition: opacity .35s ease; }
+#preloader.is-hidden { opacity: 0; pointer-events: none; }
+
+    /* Masonry layout (no extra library needed) */
+.masonry { column-gap: 1rem; }                 /* gap between columns */
+@media (min-width: 640px) { .masonry { column-count: 2; } }  /* sm: 2 cols */
+@media (min-width: 1024px){ .masonry { column-count: 3; } }  /* lg: 3 cols */
+.masonry-item { break-inside: avoid; margin-bottom: 1rem; }  /* prevent split */
+
+    /* Minimal focus ring for accessibility */
+    :focus-visible { outline: 2px solid #3F3F46; outline-offset: 3px; }
+
+    /* Reusable frame + zoom */
+    .frame { overflow: hidden; border-radius: 0.5rem; border: 1px solid #E7E5E4; background: #F5F5F4; }
+    .zoomable { transition: transform 500ms; }
+    .zoomable:hover { transform: scale(1.05); }
+    @media (prefers-reduced-motion: reduce) { .zoomable { transition: none; } }
+
+    .custom-shape-divider-bottom-1757056263 {
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1757056263 svg {
+    position: relative;
+    display: block;
+    width: calc(117% + 1.3px);
+    height: 94px;
+}
+
+.custom-shape-divider-bottom-1757056263 .shape-fill {
+    fill: #FFFFFF;
+}
+.font-bolder
+{
+    font-weight: bolder;
+}
+
+.custom-shape-divider-bottom-beige {
+  
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-beige svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 59px;
+}
+
+.custom-shape-divider-bottom-beige .shape-fill {
+    fill: #E9E1D8;
+}
+
+.swiper-pagination
+{
+    position:  static!important;
+}
+
+.yt-lite{
+  position:relative; display:block; background:#000; cursor:pointer; border:0; padding:0;
+  background-position:center center; background-size:cover;
+}
+.yt-lite::before{
+  content:""; display:block; padding-top:56.25%; /* 16:9 */
+}
+.yt-lite > .play{
+  position:absolute; inset:auto 0 0 0; margin:auto; top:50%; transform:translateY(-50%);
+  width:68px; height:48px; border-radius:14px; background:rgba(0,0,0,.6);
+  display:grid; place-items:center;
+}
+.yt-lite > .play::before{
+  content:""; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;
+  margin-left:3px;
+}
+.yt-lite:hover > .play{ background:rgba(0,0,0,.75); }
+
+/* nice thumbnail fade-in */
+.yt-lite[style*="background-image"]{ filter:brightness(0.98); transition:filter .2s ease; }
+.yt-lite:hover{ filter:brightness(1); }
+
