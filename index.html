@@ -83,14 +83,14 @@
     "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://emceevictoriatan.com/#contact" }
   }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
  
 <script   src="tailwindconfig.js" defer></script>
 <script   src="preload.js" defer></script>
   <!-- Swiper (for sliders) -->
-<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
+<link rel="stylesheet" href="assets/styles/swiper-bundle.min.css"  media="print" onload="this.media='all'" />
 
-<link rel="stylesheet" href="mainstyle.css" />
+<link rel="stylesheet" href="mainstyle.css" media="print" onload="this.media='all'"  />
 
 <noscript> 
   <link rel="stylesheet" href="/mainstyle.css">
