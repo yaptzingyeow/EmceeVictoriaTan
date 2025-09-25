@@ -20,6 +20,16 @@
   <!-- (optional) png fallbacks -->
   <!-- <link rel="icon" href="https://emceevictoriatan.com/assets/logos/VT.png" type="image/png"> -->
 
+
+<link rel="preload" as="image" href="/assets/logos/hero1.webp" fetchpriority="high"> 
+<link rel="preload" as="image" href="/assets/logos/victoria-tan-logo.webp" fetchpriority="high"> 
+<link rel="preload" as="image" href="/assets/portfolio/events/event-1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/portfolio/events/event-2.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/portfolio/lifestyle/lifestyle-1.webp"fetchpriority="high">
+<link rel="preload" as="image" href="/assets/portfolio/lifestyle/lifestyle-2.webp"fetchpriority="high">
+<link rel="preload" as="image" href="/assets/portfolio/tv/tv-1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/portfolio/tv/tv-2.webp" fetchpriority="high">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Emcee Victoria Tan">
@@ -39,12 +49,10 @@
   <!-- optional: <meta name="twitter:creator" content="@yourhandle"> -->
 
   <!-- Performance hints -->
-  <link rel="preload" as="image" href="https://emceevictoriatan.com/assets/hero1.avif" imagesrcset="https://emceevictoriatan.com/assets/hero1@2x.avif 2x" fetchpriority="high">
  
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="styles.css" />
 
   <!-- Structured Data: Person -->
   <script type="application/ld+json">
@@ -77,19 +85,26 @@
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
  
-<script   src="tailwindconfig.js"></script>
-<script   src="preload.js"></script>
+<script   src="tailwindconfig.js" defer></script>
+<script   src="preload.js" defer></script>
   <!-- Swiper (for sliders) -->
 <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css" />
 
 <link rel="stylesheet" href="mainstyle.css" />
+
+<noscript> 
+  <link rel="stylesheet" href="/mainstyle.css">
+  <link rel="stylesheet" href="/styles/swiper-bundle.min.css">
+</noscript>
+
+
 </head>
 <body class="bg-canvas text-ink antialiased">
     <!-- Page Preloader -->
 <div id="preloader" class="fixed inset-0 z-[9999] grid place-items-center bg-beige transition-opacity duration-500">
   <div class="flex flex-col items-center gap-5 px-6">
     <!-- your logo (use SVG/PNG); height can be tweaked -->
-    <img src="assets/logos/victoria-tan-logo.webp" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90" />
+    <img src="assets/logos/victoria-tan-logo.webp" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90"  decoding="async" fetchpriority="high"  />
 
     <!-- ring + progress bar -->
     <div class="relative">
@@ -118,7 +133,7 @@
     src="assets/logo/victoria-tan-logo3.webp"
     srcset="assets/logos/victoria-tan-logo3.webp 1x, assets/logos/victoria-tan-logo3.webp 2x"
     alt="Victoria Tan"
-    class="h-16 w-auto object-contain"
+    class="h-16 w-auto object-contain"  decoding="async" fetchpriority="high"
   />
 </a>
       <!-- End Logo -->
@@ -196,7 +211,7 @@
       <span>My Voice.</span>
       <!-- Mic icon -->
  <img src="assets/microphone2.svg" alt="" aria-hidden="true"
-           width="72" height="72" class="inline-block align-middle opacity-90">
+           width="72" height="72" class="inline-block align-middle opacity-90"  decoding="async" fetchpriority="high">
  
     </span>
   </span>
@@ -450,12 +465,12 @@
   <div class="animate-marquee flex gap-12 items-center px-6">
    
         <!-- Row of logos -->
-        <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  fetchpriority="high"  draggable="false" />
-        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high"  draggable="false" />
-        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high" draggable="false" />
-        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high"  draggable="false" />
-        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   fetchpriority="high" draggable="false" />
-        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  fetchpriority="high"  draggable="false" />
+        <img src="assets/logos/1.svg" alt="Brand 1" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false"  />
+        <img src="assets/logos/2.svg" alt="Brand 2" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/3.svg" alt="Brand 3" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   loading="lazy" decoding="async"  draggable="false" />
+        <img src="assets/logos/4.svg" alt="Brand 4" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false"  />
+        <img src="assets/logos/5.svg" alt="Brand 5" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"   loading="lazy" decoding="async"  draggable="false"  />
+        <img src="assets/logos/6.svg" alt="Brand 6" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
         <img src="assets/logos/7.svg" alt="Brand 7" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
         <img src="assets/logos/8.svg" alt="Brand 8" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
         <img src="assets/logos/9.svg"alt="Brand 9" class="h-20 md:h-32 w-auto opacity-80 flex-shrink-0"  loading="lazy" decoding="async"  draggable="false" />
@@ -975,8 +990,8 @@
   </main>
 
   <!-- Swiper JS + init after injection -->
-  <script src="assets/scripts/swiper-bundle.min.js"></script>
-  <script src="main.js"></script>
+  <script src="assets/scripts/swiper-bundle.min.js" defer></script>
+  <script src="main.js"defer></script>
 
 
 <script defer src="slide.js">
