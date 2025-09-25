@@ -29,7 +29,7 @@ function buildSlides(count, wrapperId, folder, prefix) {
             alt="${prefix} ${i}"
             ${i <= 2 ? 'loading="eager"' : 'loading="lazy"'}
             decoding="async"
-            ${i <= 2 ? 'fetchpriority="high"' : 'fetchpriority="auto"'}
+            ${i <= 2 ? 'fetchpriority="high" decoding="async"' : 'fetchpriority="auto"'}
             class="lazy-img max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer"
           >
         </a>
