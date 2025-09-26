@@ -203,30 +203,41 @@ const portfolioConfig = {
   // set counts to how many images you actually have per album
 
   // ====== RENDER HELPERS ======
-function makeMobileSlide(href, alt, label, thumb = null) {
-  const displaySrc = thumb || href; // use thumbnail if available
+  function pairFromHref(href) {
+  const high = href.replace(/\.webp$/i, '_high.webp');
+  const low  = href.replace(/\.webp$/i,  '_low.webp');
+  return { high, low };
+}
+function makeMobileSlide(href, alt, label) {
+  const { high, low } = pairFromHref(href);
   return `
     <div class="swiper-slide">
       <div class="block rounded-xl overflow-hidden bg-black flex items-center justify-center">
-        <a href="${href}" data-lightbox="gallery" data-title="${label}">
-          <img src="${displaySrc}" alt="${alt}"
-               class="h-64 object-contain cursor-pointer transition-transform duration-500 ease-out hover:scale-105"
-               loading="lazy" decoding="async">
+        <a href="${high}" data-lightbox="gallery" data-title="${label}">
+          <img
+            src="${low}"
+            alt="${alt}"
+            class="h-64 object-contain cursor-pointer transition-transform duration-500 ease-out hover:scale-105"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;this.src='${high}'"
+          >
         </a>
       </div>
       <p class="mt-3 text-center text-sm font-medium text-wordcolor">${label}</p>
     </div>`;
 }
 
-function makeDesktopCard(href, caption, thumb = null) {
-  const displaySrc = thumb || href;
+function makeDesktopCard(href, caption) {
+  const { high, low } = pairFromHref(href);
   return `
     <div class="col-span-12 sm:col-span-6 md:col-span-4">
       <div class="group relative block rounded-xl overflow-hidden bg-black flex items-center justify-center">
-        <a href="${href}" data-lightbox="gallery" data-title="${caption}">
-          <img class="h-64 object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer"
-               src="${displaySrc}" alt="${caption}" 
-               loading="lazy" decoding="async">
+        <a href="${high}" data-lightbox="gallery" data-title="${caption}">
+          <img
+            class="h-64 object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer"
+            src="${low}" alt="${caption}" loading="lazy" decoding="async"
+            onerror="this.onerror=null;this.src='${high}'"
+          >
         </a>
         <div class="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pointer-events-none">
           <div class="text-sm font-semibold text-gray-800 rounded-lg bg-white/80 backdrop-blur-sm p-2 md:p-3 md:text-base">
@@ -236,6 +247,7 @@ function makeDesktopCard(href, caption, thumb = null) {
       </div>
     </div>`;
 }
+
 function fillAlbumUI(key) {
   const cfg = portfolioConfig[key];
   const mobileWrap = document.getElementById(`swiper-wrapper-${key}`);
@@ -246,7 +258,7 @@ function fillAlbumUI(key) {
   if (!mobileWrap.dataset.filled) {
     let slides = '';
     for (let i = 1; i <= cfg.count; i++) {
-      const href = `${cfg.base}${i}.webp`;
+      const href = `${cfg.base}${i}.webp`; // keep your existing pattern
       const title = (cfg.titles && cfg.titles[i - 1]) ? cfg.titles[i - 1] : `${cfg.label} ${i}`;
       slides += makeMobileSlide(href, title, title);
     }
