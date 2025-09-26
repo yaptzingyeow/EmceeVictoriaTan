@@ -204,7 +204,7 @@ const portfolioConfig = {
 
   // ====== RENDER HELPERS ======
   function pairFromHref(href) {
-  const high = href.replace(/\.webp$/i, '_high.webp');
+  const high = href.replace(/\.webp$/i, '_High.webp');
   const low  = href.replace(/\.webp$/i,  '_low.webp');
   return { high, low };
 }
