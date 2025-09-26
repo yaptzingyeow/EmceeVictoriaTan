@@ -146,7 +146,8 @@
 
 .yt-lite{
   position:relative; display:block; background:#000; cursor:pointer; border:0; padding:0;
-  background-position:center center; background-size:cover;
+  background-position:center center; background-size:cover; overflow:hidden;             /* so iframe edges don't spill */
+  border-radius:12px;          /* optional: keep your rounded look */
 }
 .yt-lite::before{
   content:""; display:block; padding-top:56.25%; /* 16:9 */
@@ -166,3 +167,10 @@
 .yt-lite[style*="background-image"]{ filter:brightness(0.98); transition:filter .2s ease; }
 .yt-lite:hover{ filter:brightness(1); }
 
+.yt-lite > iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}

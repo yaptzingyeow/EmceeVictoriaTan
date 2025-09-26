@@ -4,33 +4,45 @@
     // ---------- Your pattern applied to ALL services ----------
     // Adjust counts to match the number of images you have in each folder.
      
-  const protocolCount = 9;
-  const corporateBeautyCount = 11;   // <- change as needed
-  const corporateTechCount = 9;     // <- change as needed
-  const weddingCount = 8;  // assets/wedding/wedding-1.webp ... wedding-10.webp
-  const commercialCount = 10; // assets/commercial/commercial-1.webp ... commercial-10.webp
+  const protocolCount        = 9;
+const corporateBeautyCount = 11;
+const corporateTechCount   = 9;
+const weddingCount         = 8;
+// const commercialCount   = 10; // disabled in your original
 
+/* ---------- 1x1 transparent placeholder ---------- */
 const BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
+/* Build a pair of paths for each slide */
+function pairPaths(folder, prefix, i) {
+  const base = `assets/${folder}/${prefix}-${i}`;
+  return {
+    low: `${base}_low.webp`,
+    hd : `${base}_hd.webp`,
+  };
+}
+
+/* Build slides: show LOW in the carousel, click opens HD */
 function buildSlides(count, wrapperId, folder, prefix) {
   const gallery = document.getElementById(wrapperId);
   if (!gallery) return;
 
   for (let i = 1; i <= count; i++) {
-    const href = `assets/${folder}/${prefix}-${i}.webp`;
+    const { low, hd } = pairPaths(folder, prefix, i);
     const slide = document.createElement('div');
     slide.className = "swiper-slide";
     slide.innerHTML = `
       <div class="w-full aspect-[4/3] bg-transparent flex items-center justify-center rounded-lg overflow-hidden group">
-        <a href="${href}" target="_blank" rel="noopener">
+        <a href="${hd}" target="_blank" rel="noopener" aria-label="${prefix} ${i} (open high resolution)">
           <img
             src="${BLANK}"
-            data-src="${href}"
+            data-src="${low}"
             alt="${prefix} ${i}"
-            ${i <= 2 ? 'loading="eager"' : 'loading="lazy"'}
+            loading="lazy"
             decoding="async"
-            ${i <= 2 ? 'fetchpriority="high" decoding="async"' : 'fetchpriority="auto"'}
+            fetchpriority="auto"
             class="lazy-img max-h-full max-w-full object-contain transition-transform duration-500 ease-out group-hover:scale-105 cursor-pointer"
+            onerror="this.onerror=null;this.src='${hd}'"
           >
         </a>
       </div>
@@ -40,11 +52,12 @@ function buildSlides(count, wrapperId, folder, prefix) {
   enableLazy(`#${wrapperId} .lazy-img`, { rootMargin: '600px 0px', prefetchNext: true });
 }
 
+/* Lazy loader with tiny prefetch for the next slide */
 function enableLazy(selector, { rootMargin = '400px 0px', prefetchNext = true } = {}) {
-  const imgs = [...document.querySelectorAll(selector)];
+  const imgs = Array.from(document.querySelectorAll(selector));
   if (!imgs.length) return;
 
-  // Kick off immediate load for any eager imgs
+  // Eager ones load immediately (you don't have any eager now, still safe)
   imgs.filter(img => img.getAttribute('loading') === 'eager').forEach(loadImg);
 
   const io = new IntersectionObserver((entries) => {
@@ -53,7 +66,7 @@ function enableLazy(selector, { rootMargin = '400px 0px', prefetchNext = true } 
       const img = e.target;
       loadImg(img);
 
-      // Prefetch the next sibling image to make swiping feel instant
+      // Prefetch the next LOW file so swiping feels instant
       if (prefetchNext) {
         const next = nextLazy(imgs, img);
         if (next) warm(next.dataset.src);
@@ -90,12 +103,12 @@ function enableLazy(selector, { rootMargin = '400px 0px', prefetchNext = true } 
     img.src = url;
   }
 }
-    // Inject slides for each service
+
+/* ---------- Inject slides for each gallery ---------- */
 buildSlides(protocolCount,        'protocol-gallery',         'protocol',         'protocol');
-  buildSlides(corporateBeautyCount, 'corporate-beauty-gallery', 'corporate-beauty', 'corporate-beauty');
-  buildSlides(corporateTechCount,   'corporate-tech-gallery',   'corporate-tech',   'corporate-tech');
-  buildSlides(weddingCount,         'wedding-gallery',          'wedding',          'wedding');
-  //buildSlides(commercialCount,      'commercial-gallery',       'commercial',       'commercial');
+buildSlides(corporateBeautyCount, 'corporate-beauty-gallery', 'corporate-beauty', 'corporate-beauty');
+buildSlides(corporateTechCount,   'corporate-tech-gallery',   'corporate-tech',   'corporate-tech');
+buildSlides(weddingCount,         'wedding-gallery',          'wedding',          'wedding');
 
     // Init Swipers AFTER slides are in the DOM
     function initAllSwipers() {
@@ -441,7 +454,7 @@ function initSwiperFor(key) {
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
       iframe.loading = 'lazy';
       iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&modestbranding=1&rel=0&playsinline=1`;
-      el.replaceWith(iframe);
+     el.replaceChildren(iframe);   
     }, { once:true });
   });
   

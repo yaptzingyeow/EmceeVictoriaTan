@@ -21,25 +21,14 @@
   <!-- <link rel="icon" href="https://emceevictoriatan.com/assets/logos/VT.png" type="image/png"> -->
 
 
-<link rel="preload" as="image" href="/assets/hero1.webp" fetchpriority="high"> 
-<link rel="preload" as="image" href="/assets/2ndbg2.webp" fetchpriority="high"> 
-<link rel="preload" as="image" href="/assets/logos/victoria-tan-logo.webp" fetchpriority="high"> 
-<link rel="preload" as="image" href="/assets/corporate-beauty/corporate-beauty-1.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/corporate-beauty/corporate-beauty-2.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/wedding/wedding-1.webp"fetchpriority="high">
-<link rel="preload" as="image" href="/assets/wedding/wedding-2.webp"fetchpriority="high">
-<link rel="preload" as="image" href="/assets/protocol/protocol-1.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/protocol/protocol-2.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/corporate-tech/corporate-tech-1.webp" fetchpriority="high">
-<link rel="preload" as="image" href="/assets/corporate-tech/corporate-tech-2.webp" fetchpriority="high">
-
+<link rel="preload" as="image" href="./assets/hero1.webp" fetchpriority="high"> 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Emcee Victoria Tan">
   <meta property="og:title" content="Victoria Tan | Professional Malaysian Emcee">
   <meta property="og:description" content="Trusted Malaysian emcee with over a decade of experience in weddings, corporate events, and protocol ceremonies. Bilingual (EN, 中文, BM).">
   <meta property="og:url" content="https://emceevictoriatan.com/">
-  <meta property="og:image" content="https://emceevictoriatan.com/assets/og/hero1.jpg">
+  <meta property="og:image" content="https://emceevictoriatan.com/assets/hero1.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -47,7 +36,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Victoria Tan | Malaysian Emcee & Event Host">
   <meta name="twitter:description" content="Professional emcee for weddings, corporate events, protocol ceremonies & commercial shoots.">
-  <meta name="twitter:image" content="https://emceevictoriatan.com/assets/og/hero1.jpg">
+  <meta name="twitter:image" content="https://emceevictoriatan.com//assets/hero1.webp">
   <!-- optional: <meta name="twitter:site" content="@yourhandle"> -->
   <!-- optional: <meta name="twitter:creator" content="@yourhandle"> -->
 
@@ -62,11 +51,11 @@
     "name": "Victoria Tan",
     "jobTitle": "Master of Ceremonies (Emcee)",
     "url": "https://emceevictoriatan.com/",
-    "image": "https://emceevictoriatan.com/assets/og/hero1.jpg",
+    "image": "https://emceevictoriatan.com/assets/hero1.webp",
     "knowsLanguage": ["en", "zh", "ms"],
     "sameAs": [
       "https://www.instagram.com/victoriathings",
-      "https://www.youtube.com/@yourchannel"
+      "https://www.youtube.com/@victoriakmtan"
     ],
     "description": "Professional Malaysian emcee with 12+ years of hosting experience in weddings, corporate events, and protocol ceremonies."
   }
@@ -83,18 +72,16 @@
     "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://emceevictoriatan.com/#contact" }
   }
   </script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
- 
-<script   src="tailwindconfig.js" defer></script>
+
+<link rel="stylesheet" href="./dist/app.min.css"  media="print" onload="this.media='all'" >
 <script   src="preload.js" defer></script>
   <!-- Swiper (for sliders) -->
 <link rel="stylesheet" href="assets/styles/swiper-bundle.min.css"  media="print" onload="this.media='all'" />
-
 <link rel="stylesheet" href="mainstyle.css" media="print" onload="this.media='all'"  />
-  <script src="assets/scripts/swiper-bundle.min.js" defer></script>
 <noscript> 
   <link rel="stylesheet" href="/mainstyle.css">
   <link rel="stylesheet" href="/styles/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/dist/app.min.css">
 </noscript>
 
 
@@ -104,7 +91,7 @@
 <div id="preloader" class="fixed inset-0 z-[9999] grid place-items-center bg-beige transition-opacity duration-500">
   <div class="flex flex-col items-center gap-5 px-6">
     <!-- your logo (use SVG/PNG); height can be tweaked -->
-    <img src="assets/logos/victoria-tan-logo.webp" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90"  decoding="async" fetchpriority="high"  />
+    <img src="assets/logos/victoria-tan-logo.webp" alt="Victoria Tan" class="h-64 w-auto object-contain opacity-90"  decoding="async" loading="lazy" />
 
     <!-- ring + progress bar -->
     <div class="relative">
@@ -124,7 +111,7 @@
    
 <!-- ========== HEADER ========== -->
 <header class="font-sofia  fixed  top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-<nav class="mt-4 relative max-w-4xl w-full bg-transparent border border-gray-200 rounded-[24px] mx-2 flex flex-wrap md:flex-nowrap items-center justify-between p-1 ps-4 md:py-0 sm:mx-auto ">
+<nav class="mt-4 relative max-w-4xl w-full bg-parchment border border-gray-200 rounded-[24px] mx-2 flex flex-wrap md:flex-nowrap items-center justify-between p-1 ps-4 md:py-0 sm:mx-auto ">
 
     <div class="flex items-center">
       <!-- Logo -->
@@ -133,7 +120,7 @@
     src="assets/logo/victoria-tan-logo3.webp"
     srcset="assets/logos/victoria-tan-logo3.webp 1x, assets/logos/victoria-tan-logo3.webp 2x"
     alt="Victoria Tan"
-    class="h-16 w-auto object-contain"  decoding="async" fetchpriority="high"
+    class="h-16 w-auto object-contain"   
   />
 </a>
       <!-- End Logo -->
@@ -199,7 +186,7 @@
         <div class="grid lg:grid-cols-12 gap-8 items-end">
           <div class="lg:col-span-7">
             <!-- Replace image -->
-   <img src="/assets/hero1.webp" alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur - trilingual host"
+   <img src="./assets/hero1.webp" alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur - trilingual host"
      class="w-full object-cover object-center rounded-lg"
      width="1600" height="900" decoding="async" fetchpriority="high">
           </div>
@@ -992,7 +979,7 @@
   <!-- Swiper JS + init after injection --> 
   <script src="main.js"defer></script>
 
-
+  <script src="assets/scripts/swiper-bundle.min.js"></script>
 <script defer src="slide.js">
 
 </script>
