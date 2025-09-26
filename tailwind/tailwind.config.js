@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         parchment:"#f3e7ca94",
         canvas:"#FFFFFF",
+         wordmuted: "#2f4b67",
         wordcolor:"#3d5d7d",
         ink:"#1F2937",
         line:"#E7E5E4",
