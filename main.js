@@ -435,7 +435,7 @@ function initSwiperFor(key) {
   document.querySelectorAll('.yt-lite').forEach(el=>{
     const id = el.dataset.ytid;
     // Use maxresdefault if available; fallback automatically handled by YouTube
-    el.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
+    el.style.backgroundImage = `url(assets/youtube/youtube-${id}.webp)`;
     const play = document.createElement('span'); play.className = 'play'; el.appendChild(play);
 
     // Preconnect when visible
