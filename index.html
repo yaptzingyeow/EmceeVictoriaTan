@@ -84,7 +84,16 @@
   <link rel="stylesheet" href="/dist/app.min.css">
 </noscript>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GZ38LVT01E">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-GZ38LVT01E');
+</script>
 </head>
 <body>
     <!-- Page Preloader -->
@@ -196,9 +205,9 @@
   <!-- fallback / desktop -->
   <img
     src="./assets/hero1.webp"
-    alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur - trilingual host"
-    width="1600" height="900"          
-    class="block w-full h-auto object-contain rounded-lg"
+    alt="Victoria Tan emceeing a corporate gala in Kuala Lumpur - trilingual host"       
+    class="object-contain rounded-lg"
+    
     decoding="async"
     fetchpriority="high">
 </picture>
